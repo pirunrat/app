@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Car Prediction Input</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content.css' %}">
+    <!-- You might also want to consider including Google Fonts or FontAwesome for additional styling and icons. -->
+</head>
+
+<body>
+    <div class="container">
+        <h1>Chaky UsedCar</h1>
+        <h3>Please input your desired specifications below</h3>
+        <form method="post" class="prediction-form">
+            {% csrf_token %}
+
+            <h5>The mileage value should be within the range of 0 - 42</h5>
+            <h5>The maxpower value should be within the range of 0 - 400</h5>
+
+            <!-- Year Field -->
+            <div class="input-group">
+                {{ form.year.label_tag }}
+                {{ form.year }}
+                {% if form.year.errors %}
+                <div class="error">{{ form.year.errors }}</div>
+                {% endif %}
+            </div>
+
+            <!-- Max Power Field -->
+            <div class="input-group">
+                {{ form.max_power.label_tag }}
+                {{ form.max_power }}
+                {% if form.max_power.errors %}
+                <div class="error">{{ form.max_power.errors }}</div>
+                {% endif %}
+            </div>
+
+            <!-- Mileage Field -->
+            <div class="input-group">
+                {{ form.mileage.label_tag }}
+                {{ form.mileage }}
+                {% if form.mileage.errors %}
+                <div class="error">{{ form.mileage.errors }}</div>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="submit-btn">Predict</button>
+        </form>
+
+        <div class="result">
+            <p>{{ prediction }}</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

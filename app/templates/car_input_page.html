@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Prediction Input</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content.css' %}">
+</head>
+<body>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- Mileage Field -->
+        <div class="input-group">
+                
+            {{ form.year.label_tag }}
+            {{ form.year }}
+            {% if form.year.errors %}
+            <div class="error">{{ form.year.errors }}</div>
+            {% endif %}
+        </div>
+        <p>
+            {{ form.mileage.label_tag }}
+            {{ form.mileage }}
+            {% if form.mileage.errors %}
+                <div class="error">{{ form.mileage.errors }}</div>
+            {% endif %}
+        </p>
+
+        <!-- Max Power Field -->
+        <p>
+            {{ form.max_power.label_tag }}
+            {{ form.max_power }}
+            {% if form.max_power.errors %}
+                <div class="error">{{ form.max_power.errors }}</div>
+            {% endif %}
+        </p>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    <p>{{ prediction }}</p>
+
+</body>
+</html>
